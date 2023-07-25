@@ -21,6 +21,9 @@ storyblokInit({
     tour: Tour,
     tour_list: TourList,
   },
+  apiOptions: {
+    fetch: fetch,
+  },
 });
 
 export const StoryblokProvider = ({ children }: PropsWithChildren) => {

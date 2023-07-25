@@ -3,7 +3,6 @@ import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
 import { TourCard } from "./TourCard";
 
 export const TourList: FC<{ blok: any }> = ({ blok }) => {
-  console.log(blok);
   return (
     <div
       className="max-w-2xl mx-auto px-4 lg:max-w-5xl py-16"

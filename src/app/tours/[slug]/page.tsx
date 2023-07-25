@@ -1,10 +1,23 @@
-import { TourCard } from "@/components/TourCard";
 import { getStoryblokApi } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 
+export const generateStaticParams = async () => {
+  const client = getStoryblokApi();
+  const response = await client.getStories({
+    version: "draft",
+    starts_with: "tours/",
+    is_startpage: 0,
+  });
+
+  return response.data.stories.map((story) => ({
+    slug: story.slug,
+  }));
+};
+
 const fetchTour = async (slug: string) => {
   const client = getStoryblokApi();
-  const response = await client.get(`cdn/stories/tours/${slug}`, {
+
+  const response = await client.getStory(`tours/${slug}`, {
     version: "draft",
   });
   return response.data.story;
