@@ -1,5 +1,5 @@
 import { TourCard } from "@/components/TourCard";
-import { getStoryblokApi } from "@storyblok/react/rsc";
+import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 
 const fetchToursPage = async () => {
@@ -24,7 +24,7 @@ const ToursPage = async () => {
   const story = await fetchToursPage();
   const tours = await fetchAllTours();
   return (
-    <div>
+    <div {...storyblokEditable(story.content)}>
       <StoryblokStory story={story} />
       <div className="grid grid-cols-2 gap-16 max-w-2xl mx-auto px-4 lg:max-w-5xl">
         {tours.map((tour: any, index: number) => (

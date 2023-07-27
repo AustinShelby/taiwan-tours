@@ -1,4 +1,4 @@
-import { getStoryblokApi } from "@storyblok/react/rsc";
+import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 
 export const generateStaticParams = async () => {
@@ -27,7 +27,7 @@ const TourPage = async ({ params: { slug } }: { params: { slug: string } }) => {
   const story = await fetchTour(slug);
 
   return (
-    <div>
+    <div {...storyblokEditable(story.content)}>
       <StoryblokStory story={story} />
     </div>
   );

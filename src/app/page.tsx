@@ -1,8 +1,6 @@
 import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 
-export const fetchCache = "only-no-store";
-
 const fetchHomePage = async () => {
   const client = getStoryblokApi();
   const response = await client.getStory("home", {
@@ -14,8 +12,6 @@ const fetchHomePage = async () => {
 
 const HomePage = async () => {
   const story = await fetchHomePage();
-
-  console.log(story.content.blocks[0].content);
 
   return (
     <div {...storyblokEditable(story.content)}>
