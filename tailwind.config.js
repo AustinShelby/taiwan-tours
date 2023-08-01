@@ -12,9 +12,9 @@ module.exports = {
         jakarta: ["var(--font-jakarta)"],
       },
       colors: {
-        main: "#0F1422",
-        secondary: "#DE9C07",
-        tertiary: "#525150",
+        main: "#F0F5F6",
+        secondary: "#DBEAEB",
+        tertiary: "#DE9C07",
         "main-alt": "#0F1C43",
       },
     },

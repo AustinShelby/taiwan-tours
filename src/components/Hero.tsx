@@ -7,9 +7,9 @@ import {
 
 export const Hero: FC<{ blok: any }> = ({ blok }) => {
   return (
-    <section className="bg-main">
+    <section className="bg-main pt-32 pb-16">
       <div
-        className="max-w-2xl mx-auto px-4 lg:max-w-5xl py-16"
+        className="max-w-2xl mx-auto px-4 lg:max-w-5xl"
         {...storyblokEditable(blok)}
       >
         <div
@@ -23,7 +23,7 @@ export const Hero: FC<{ blok: any }> = ({ blok }) => {
                         tag: `h${node.attrs.level}`,
                         attrs: {
                           class:
-                            "text-7xl font-extrabold font-jakarta text-center text-white",
+                            "text-7xl font-extrabold font-jakarta text-center text-black",
                         },
                       },
                     ],
@@ -33,7 +33,7 @@ export const Hero: FC<{ blok: any }> = ({ blok }) => {
             }),
           }}
         ></div>
-        <p className="text-white text-xl mt-8 text-center">{blok.content}</p>
+        <p className="text-black text-xl mt-8 text-center">{blok.content}</p>
         <div className="w-full aspect-video mt-12">
           <iframe
             className="w-full h-full"

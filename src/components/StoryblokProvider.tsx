@@ -8,6 +8,8 @@ import { Hero } from "./Hero";
 import { HeroAlt } from "./HeroAlt";
 import { Tour } from "./Tour";
 import { TourList } from "./TourList";
+import { Testimonial } from "./Testimonial";
+import { CallToAction } from "./CallToAction";
 
 storyblokInit({
   accessToken: "ckbY4lg0OtsQ9U6PCjI7rgtt",
@@ -18,6 +20,8 @@ storyblokInit({
     feature: Feature,
     hero: Hero,
     hero_alt: HeroAlt,
+    testimonial: Testimonial,
+    call_to_action: CallToAction,
     tour: Tour,
     tour_list: TourList,
   },

@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -36,7 +37,20 @@ export default function RootLayout({
           lang="en"
           className={`${inter.variable} ${plus_jakarta_sans.variable}`}
         >
-          <body className="font-sans">{children}</body>
+          <body className="font-sans">
+            <header className="bg-main">
+              <nav className="max-w-5xl mx-auto px-4 py-8 w-full flex justify-between items-baseline">
+                <Link href={"/"}>Home</Link>
+                <Link href={"/tours"}>Browse Tours</Link>
+              </nav>
+            </header>
+            {children}
+            <footer className="bg-secondary">
+              <div className="max-w-5xl mx-auto px-4 py-4 w-full">
+                <p className="opacity-80">&copy; Copyright 2023 Taiwan Tours</p>
+              </div>
+            </footer>
+          </body>
         </html>
       </StoryblokProvider>
     </>

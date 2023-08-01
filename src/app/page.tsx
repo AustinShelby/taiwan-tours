@@ -16,7 +16,7 @@ const HomePage = async () => {
   const story = await fetchHomePage();
 
   return (
-    <div {...storyblokEditable(story.content)}>
+    <div className="" {...storyblokEditable(story.content)}>
       <StoryblokStory
         bridgeOptions={{ resolveRelations: ["tour_list.tours"] }}
         story={story}
