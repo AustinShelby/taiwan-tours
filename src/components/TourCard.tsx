@@ -43,10 +43,10 @@ export const TourCard: FC<{ tour: any; large: boolean }> = ({
         </div>
         <div className="p-8">
           <div className="flex flex-row justify-between items-baseline">
-            <h3 className="text-2xl font-jakarta font-bold">
+            <h3 className="text-xl lg:text-2xl font-jakarta font-bold">
               {tour.content?.name}
             </h3>
-            <p className="text-2xl font-jakarta font-black">
+            <p className="text-xl lg:text-2xl font-jakarta font-black">
               {Number(tour.content?.price).toLocaleString("en-US", {
                 style: "currency",
                 currency: "TWD",
@@ -66,11 +66,13 @@ export const TourCard: FC<{ tour: any; large: boolean }> = ({
                 clipRule="evenodd"
               />
             </svg>
-            <p className="text-gray-400 uppercase font-bold ml-2 text-sm tracking-wide">
+            <p className="text-gray-400 uppercase font-bold ml-2 text-xs lg:text-sm tracking-wide">
               {tour.content?.location}, Taiwan
             </p>
           </div>
-          <p className="hover:underline mt-8 font-bold">View Tour {">"}</p>
+          <p className="hover:underline mt-8 font-bold text-sm lg:text-base">
+            View Tour {">"}
+          </p>
         </div>
       </div>
       {/* <div

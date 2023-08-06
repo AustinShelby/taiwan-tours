@@ -32,7 +32,7 @@ export const Testimonial: FC<{ blok: any }> = ({ blok }) => {
       <p className="text-lg mt-4">{blok.testimonial}</p>
       <div className="flex items-center space-x-4 mt-4">
         <img
-          className="w-8 h-8 rounded-full"
+          className="w-8 h-8 rounded-full object-cover"
           src={blok.picture.filename}
           alt=""
         />

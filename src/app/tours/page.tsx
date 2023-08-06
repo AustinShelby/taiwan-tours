@@ -23,15 +23,21 @@ const fetchAllTours = async () => {
 const ToursPage = async () => {
   const story = await fetchToursPage();
   const tours = await fetchAllTours();
+
   return (
     <div {...storyblokEditable(story.content)}>
       <StoryblokStory story={story} />
-      <div className="grid grid-cols-2 gap-16 max-w-2xl mx-auto px-4 lg:max-w-5xl">
-        {tours.map((tour: any, index: number) => (
-          <div key={index} className={`${index === 0 ? "col-span-2" : ""}`}>
-            <TourCard tour={tour} large={index === 0} />
-          </div>
-        ))}
+      <div className=" bg-main py-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 max-w-2xl mx-auto px-4 lg:max-w-5xl">
+          {tours.map((tour: any, index: number) => (
+            <div
+              key={index}
+              className={`${index === 0 ? "lg:col-span-2" : ""}`}
+            >
+              <TourCard tour={tour} large={index === 0} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
