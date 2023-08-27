@@ -42,7 +42,6 @@ storyblokInit({
 });
 
 const fetchSiteData = async () => {
-  console.log(`Fetching footer`);
   const client = getStoryblokApi();
   // TODO: Pass a custom fetch with the next caching set to persist store
   const response = await client.getStory("site-data", {
