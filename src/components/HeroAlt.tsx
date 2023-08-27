@@ -8,7 +8,7 @@ export const HeroAlt: FC<{ blok: any }> = ({ blok }) => {
         className="max-w-2xl mx-auto px-4 lg:max-w-5xl"
         {...storyblokEditable(blok)}
       >
-        <h1 className="text-5xl lg:text-7xl font-extrabold font-jakarta text-center text-black">
+        <h1 className="text-3xl lg:text-7xl font-extrabold font-jakarta text-center text-black">
           {blok.heading}
         </h1>
       </div>

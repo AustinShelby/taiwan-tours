@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: "export",
+  images: {
+    loader: "custom",
+    loaderFile: "./src/utils/storyblokImageLoader.js",
+  },
+  compiler: {
+    removeConsole: false,
+  },
 };
 
 module.exports = nextConfig;

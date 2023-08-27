@@ -1,52 +1,49 @@
 import { FC } from "react";
 import Link from "next/link";
 
-export const TourCard: FC<{ tour: any; large: boolean }> = ({
-  tour,
-  large,
-}) => {
+export const TourCard: FC<{ tour: any }> = ({ tour }) => {
   return (
-    <Link href={`/tours/${tour?.slug}`}>
-      <div className="shadow-lg bg-white rounded-sm hover:-translate-y-4 transition-transform duration-300">
-        <div className="h-[428px] relative overflow-hidden">
-          <img
-            className="object-cover w-full h-full object-center"
-            src={tour.content?.main_image.filename}
-            alt={tour.content?.main_image.alt}
-          />
-          <div className="absolute left-0 top-8 px-4 py-3 bg-white shadow">
-            <div className="flex">
-              {Array(5)
-                .fill(undefined)
-                .map((_, index) => (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    className={`w-6 h-6 stroke-current text-tertiary ${
-                      tour.content?.star_rating >= index + 1
-                        ? "fill-current"
-                        : ""
-                    }`}
-                    key={index}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                    />
-                  </svg>
-                ))}
-            </div>
+    <div className="shadow-lg bg-white rounded-sm hover:-translate-y-4 transition-transform duration-300 relative flex flex-col">
+      <div className="">
+        <img
+          className="aspect-square object-cover w-full h-full object-center"
+          src={`${tour.content?.main_image.filename}/m/480x480`}
+          alt={tour.content?.main_image.alt}
+          height={480}
+          width={480}
+        />
+        <div className="absolute left-0 top-8 px-4 py-3 bg-white shadow">
+          <div className="flex">
+            {Array(5)
+              .fill(undefined)
+              .map((_, index) => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  className={`w-6 h-6 stroke-current text-tertiary ${
+                    tour.content?.star_rating >= index + 1 ? "fill-current" : ""
+                  }`}
+                  key={index}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                  />
+                </svg>
+              ))}
           </div>
         </div>
-        <div className="p-8">
+      </div>
+      <div className="p-4 lg:p-8 flex flex-col flex-1 justify-between">
+        <div>
           <div className="flex flex-row justify-between items-baseline">
-            <h3 className="text-xl lg:text-2xl font-jakarta font-bold">
+            <h3 className="text-lg lg:text-2xl font-jakarta font-bold">
               {tour.content?.name}
             </h3>
-            <p className="text-xl lg:text-2xl font-jakarta font-black">
+            <p className="text-lg lg:text-2xl font-jakarta font-black">
               {Number(tour.content?.price).toLocaleString("en-US", {
                 style: "currency",
                 currency: "TWD",
@@ -70,66 +67,14 @@ export const TourCard: FC<{ tour: any; large: boolean }> = ({
               {tour.content?.location}, Taiwan
             </p>
           </div>
-          <p className="hover:underline mt-8 font-bold text-sm lg:text-base">
-            View Tour {">"}
-          </p>
         </div>
+
+        <p className="hover:underline mt-8 font-bold text-sm lg:text-base">
+          View Tour {">"}
+        </p>
       </div>
-      {/* <div
-        className={`relative h-[428px] bg-red-400 hover:-translate-y-3 duration-300 hover:shadow-xl transition-all`}
-      >
-        <img
-          className="object-cover w-full h-full object-center"
-          src={tour.content?.main_image.filename}
-          alt={tour.content?.main_image.alt}
-        />
-        <div
-          style={{
-            background: `linear-gradient(0deg, #0F1422cc 20%, #0F142200 80%)`,
-          }}
-          className="inset-0 absolute p-12 flex flex-col justify-end"
-        >
-          <p className="text-white text-xs uppercase text-opacity-80">
-            {tour.content?.location}
-          </p>
-          <h2 className="font-jakarta text-3xl font-extrabold text-white mt-2">
-            {tour.content?.name}
-          </h2>
-          <div className="flex justify-between items-baseline mt-2">
-            <div className="flex">
-              {Array(5)
-                .fill(undefined)
-                .map((_, index) => (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    className={`w-6 h-6 stroke-current text-secondary ${
-                      tour.content?.star_rating >= index + 1
-                        ? "fill-current"
-                        : ""
-                    }`}
-                    key={index}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                    />
-                  </svg>
-                ))}
-            </div>
-            <p className="text-white tabular-nums slashed-zero">
-              {Number(tour.content?.price).toLocaleString("en-US", {
-                style: "currency",
-                currency: "TWD",
-                minimumFractionDigits: 0,
-              })}
-            </p>
-          </div>
-        </div>
-      </div> */}
-    </Link>
+
+      <Link className="absolute inset-0" href={`/tours/${tour?.slug}`}></Link>
+    </div>
   );
 };

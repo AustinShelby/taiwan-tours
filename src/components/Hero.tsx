@@ -8,14 +8,11 @@ import {
 export const Hero: FC<{ blok: any }> = ({ blok }) => {
   return (
     <section className="bg-main pt-32 pb-16">
-      <div
-        className="max-w-2xl mx-auto px-4 lg:max-w-5xl"
-        {...storyblokEditable(blok)}
-      >
+      <div className="component" {...storyblokEditable(blok)}>
         <div
           dangerouslySetInnerHTML={{
             __html: renderRichText(blok.heading, {
-              schema: Object.assign(RichTextSchema, {
+              schema: Object.assign({}, RichTextSchema, {
                 nodes: {
                   heading: (node: any) => ({
                     tag: [
@@ -23,7 +20,7 @@ export const Hero: FC<{ blok: any }> = ({ blok }) => {
                         tag: `h${node.attrs.level}`,
                         attrs: {
                           class:
-                            "text-7xl font-extrabold font-jakarta text-center text-black",
+                            "text-5xl md:text-7xl font-extrabold font-jakarta text-center text-black",
                         },
                       },
                     ],

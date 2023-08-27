@@ -5,7 +5,7 @@ import Link from "next/link";
 export const CallToAction: FC<{ blok: any }> = ({ blok }) => {
   return (
     <div {...storyblokEditable(blok)} className="bg-secondary">
-      <div className="max-w-5xl mx-auto px-5 py-16 w-full">
+      <div className="component py-16">
         <h2 className="text-4xl font-jakarta font-semibold text-center">
           {blok.title}
         </h2>

@@ -1,21 +1,25 @@
 import { TourCard } from "@/components/TourCard";
 import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
+import { draftMode } from "next/headers";
 
 const fetchToursPage = async () => {
+  const { isEnabled } = draftMode();
   const client = getStoryblokApi();
   const response = await client.getStory(`tours`, {
-    version: "draft",
+    version: isEnabled ? "draft" : "published",
   });
   return response.data.story;
 };
 
 const fetchAllTours = async () => {
+  console.log(`Fetching all tours`);
+  const { isEnabled } = draftMode();
   const client = getStoryblokApi();
   const response = await client.getStories({
-    version: "draft",
+    version: isEnabled ? "draft" : "published",
     starts_with: "tours/",
-    is_startpage: 0,
+    is_startpage: false,
   });
   return response.data.stories;
 };
@@ -28,14 +32,9 @@ const ToursPage = async () => {
     <div {...storyblokEditable(story.content)}>
       <StoryblokStory story={story} />
       <div className=" bg-main py-16">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 max-w-2xl mx-auto px-4 lg:max-w-5xl">
+        <div className="grid md:grid-cols-2 component gap-8 ">
           {tours.map((tour: any, index: number) => (
-            <div
-              key={index}
-              className={`${index === 0 ? "lg:col-span-2" : ""}`}
-            >
-              <TourCard tour={tour} large={index === 0} />
-            </div>
+            <TourCard tour={tour} key={index} />
           ))}
         </div>
       </div>

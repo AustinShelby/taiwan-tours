@@ -1,6 +1,6 @@
 "use client";
-import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
-import { PropsWithChildren } from "react";
+import { storyblokInit, apiPlugin, SbBlokData } from "@storyblok/react/rsc";
+import { PropsWithChildren, FC } from "react";
 import { Page } from "./Page";
 import { Grid } from "./Grid";
 import { Feature } from "./Feature";
@@ -11,8 +11,22 @@ import { TourList } from "./TourList";
 import { Testimonial } from "./Testimonial";
 import { CallToAction } from "./CallToAction";
 
+const CustomFallbackComponent: FC<{ blok: SbBlokData }> = ({ blok }) => {
+  return (
+    <div className="bg-red-50 border rounded border-red-600 px-8 py-4">
+      <p className="text-center text-red-600">
+        No component defined for <strong>{blok.component}</strong>
+      </p>
+    </div>
+  );
+};
+
 storyblokInit({
-  accessToken: "ckbY4lg0OtsQ9U6PCjI7rgtt",
+  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
+  // accessToken: "ckbY4lg0OtsQ9U6PCjI7rgtt",
+  // process.env.NODE_ENV === "production"
+  //   ? "drAirIDWhhTMK3FWUQYMrAtt"
+  //   : "ckbY4lg0OtsQ9U6PCjI7rgtt",
   use: [apiPlugin],
   components: {
     page: Page,
@@ -25,9 +39,11 @@ storyblokInit({
     tour: Tour,
     tour_list: TourList,
   },
-  apiOptions: {
-    fetch: fetch,
-  },
+  // apiOptions: {
+  //   fetch: fetch,
+  // },
+  enableFallbackComponent: true,
+  customFallbackComponent: CustomFallbackComponent,
 });
 
 export const StoryblokProvider = ({ children }: PropsWithChildren) => {

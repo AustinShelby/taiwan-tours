@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .component {
+    @apply max-w-xl mx-auto px-4 md:max-w-5xl w-full;
+  }
+}
