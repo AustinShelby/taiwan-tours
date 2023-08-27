@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 // TODO: Make dynamic on staging, static on production
 export const generateStaticParams = async () => {
   // const { isEnabled } = draftMode();
+  const isEnabled = process.env.STATIC !== "true";
   const client = getStoryblokApi();
   const response = await client.getStories({
     version: true ? "draft" : "published",
@@ -31,7 +32,7 @@ export const dynamicParams = process.env.STATIC === "true" ? false : true;
 const fetchTour = async (slug: string) => {
   console.log(`Fetching tour: ${slug}`);
   try {
-    const { isEnabled } = draftMode();
+    const isEnabled = process.env.STATIC !== "true";
     const client = getStoryblokApi();
     const response = await client.getStory(`tours/${slug}`, {
       version: isEnabled ? "draft" : "published",

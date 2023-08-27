@@ -4,7 +4,7 @@ import StoryblokStory from "@storyblok/react/story";
 import { draftMode } from "next/headers";
 
 const fetchToursPage = async () => {
-  const { isEnabled } = draftMode();
+  const isEnabled = process.env.STATIC !== "true";
   const client = getStoryblokApi();
   const response = await client.getStory(`tours`, {
     version: isEnabled ? "draft" : "published",
@@ -14,7 +14,7 @@ const fetchToursPage = async () => {
 
 const fetchAllTours = async () => {
   console.log(`Fetching all tours`);
-  const { isEnabled } = draftMode();
+  const isEnabled = process.env.STATIC !== "true";
   const client = getStoryblokApi();
   const response = await client.getStories({
     version: isEnabled ? "draft" : "published",

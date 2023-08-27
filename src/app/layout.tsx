@@ -7,7 +7,6 @@ import {
 } from "@storyblok/react/rsc";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
 import Link from "next/link";
-import { curryFetch } from "@/utils/curryFetch";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

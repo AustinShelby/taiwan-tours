@@ -4,7 +4,7 @@ import StoryblokStory from "@storyblok/react/story";
 import { draftMode } from "next/headers";
 
 const fetchHomePage = async () => {
-  const { isEnabled } = draftMode();
+  const isEnabled = process.env.STATIC !== "true";
   console.log(`Fetching home page`);
   console.log(`Preview mode ${isEnabled ? "ON" : "OFF"}`);
   const client = getStoryblokApi();
