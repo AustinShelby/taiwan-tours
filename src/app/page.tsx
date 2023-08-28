@@ -3,12 +3,15 @@ import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import { draftMode } from "next/headers";
 
+// TODO: Will setting preview mode not make this route SSG
+// TODO: Setting fetchCache = "auto" will make this page static.
 const fetchHomePage = async () => {
-  const isEnabled = process.env.STATIC !== "true";
+  // const isEnabled = process.env.PREVIEW === "true";
+  const { isEnabled } = draftMode();
   console.log(`Fetching home page`);
   console.log(`Preview mode ${isEnabled ? "ON" : "OFF"}`);
   const client = getStoryblokApi();
-  // TODO: using draftMode() stops this page from being statically generated.
+  // TODO: using draftMode() stops this page from being PREVIEWally generated.
   // TODO: Provide custom fetch function to getStory where the cache property is set depending on if
   // TODO: draftMode() is enabled
   const response = await client.getStory("home", {

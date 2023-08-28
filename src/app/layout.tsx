@@ -7,6 +7,7 @@ import {
 } from "@storyblok/react/rsc";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
 import Link from "next/link";
+import { curryFetch } from "@/utils/curryFetch";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -23,11 +24,11 @@ export const metadata = {
 
 // export const fetchCache = "default-no-store";
 // export const fetchCache = process.env.NODE_ENV === "production" ? "auto" : "force-no-store";
-export const fetchCache =
-  process.env.STATIC === "true" ? "auto" : "force-no-store";
+// export const fetchCache = process.env.PREVIEW === "true" ? "force-no-store" : "auto";
+// export const fetchCache = "auto";
 
 storyblokInit({
-  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
+  accessToken: process.env.STORYBLOK_TOKEN,
   // accessToken: "ckbY4lg0OtsQ9U6PCjI7rgtt",
   // process.env.NODE_ENV === "production"
   //   ? "drAirIDWhhTMK3FWUQYMrAtt"
@@ -36,7 +37,7 @@ storyblokInit({
   // TODO: Is this possible to do on a route basis?
   // TODO: Maybe there is no need as we want to
   apiOptions: {
-    // fetch: curryFetch,
+    fetch: curryFetch,
   },
 });
 

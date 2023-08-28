@@ -21,13 +21,15 @@ const CustomFallbackComponent: FC<{ blok: SbBlokData }> = ({ blok }) => {
   );
 };
 
+// TODO: Don't need accessToken. So it doesn't get leaked on the front-end
 storyblokInit({
-  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
+  // accessToken: process.env.STORYBLOK_TOKEN,
+  // accessToken: "undefined",
   // accessToken: "ckbY4lg0OtsQ9U6PCjI7rgtt",
   // process.env.NODE_ENV === "production"
   //   ? "drAirIDWhhTMK3FWUQYMrAtt"
   //   : "ckbY4lg0OtsQ9U6PCjI7rgtt",
-  use: [apiPlugin],
+  // use: [apiPlugin],
   components: {
     page: Page,
     grid: Grid,

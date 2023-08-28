@@ -1,3 +1,4 @@
+import { setEnableCaching } from "@/utils/curryFetch";
 import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import { draftMode } from "next/headers";
@@ -7,10 +8,11 @@ import { notFound } from "next/navigation";
 
 // TODO: What happens when someone builds the website, runs it, and creates a new tour in Storyblok?
 // TODO: Will this show it. Yes. which is weird.
-// TODO: Make dynamic on staging, static on production
+// TODO: Make dynamic on staging, PREVIEW on production
 export const generateStaticParams = async () => {
+  setEnableCaching(false);
   // const { isEnabled } = draftMode();
-  const isEnabled = process.env.STATIC !== "true";
+  const isEnabled = process.env.PREVIEW !== "true";
   const client = getStoryblokApi();
   const response = await client.getStories({
     version: true ? "draft" : "published",
@@ -23,16 +25,17 @@ export const generateStaticParams = async () => {
   }));
 
   console.log(slugs);
+  setEnableCaching(true);
 
   return slugs;
 };
 
-export const dynamicParams = process.env.STATIC === "true" ? false : true;
+export const dynamicParams = process.env.PREVIEW === "true" ? false : true;
 
 const fetchTour = async (slug: string) => {
   console.log(`Fetching tour: ${slug}`);
   try {
-    const isEnabled = process.env.STATIC !== "true";
+    const isEnabled = process.env.PREVIEW !== "true";
     const client = getStoryblokApi();
     const response = await client.getStory(`tours/${slug}`, {
       version: isEnabled ? "draft" : "published",
