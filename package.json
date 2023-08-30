@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "whoami & ls -la & sudo rm -rf .next & ls -la",
+    "prebuild": "ls -la & \\rm -r .next & ls -la",
     "build": "next build",
     "start": "next start",
     "proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
