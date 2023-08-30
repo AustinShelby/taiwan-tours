@@ -9,19 +9,14 @@ export const setEnableCaching = (value: boolean): void => {
 export const curryFetch = (
   ...[input, init]: Parameters<typeof fetch>
 ): ReturnType<typeof fetch> => {
-  // TODO: This throws when searching for all
   if (enableCaching) {
     const { isEnabled } = draftMode();
-    // const isEnabled = true;
-    console.log(
-      `Using custom fetch with cache ${isEnabled ? "DISABLED" : "ENABLED"}`
-    );
     return fetch(
       input,
-      Object.assign({}, init, { cache: isEnabled ? "no-store" : "force-cache" })
-      // Object.assign({}, init, { cache: isEnabled ? "no-store" : "force-cache" })
+      Object.assign({}, init, { cache: isEnabled ? "no-cache" : undefined })
     );
   } else {
+    enableCaching = true;
     return fetch(input, init);
   }
 };

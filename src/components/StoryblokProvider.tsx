@@ -1,5 +1,5 @@
 "use client";
-import { storyblokInit, apiPlugin, SbBlokData } from "@storyblok/react/rsc";
+import { storyblokInit, SbBlokData } from "@storyblok/react/rsc";
 import { PropsWithChildren, FC } from "react";
 import { Page } from "./Page";
 import { Grid } from "./Grid";
@@ -21,15 +21,7 @@ const CustomFallbackComponent: FC<{ blok: SbBlokData }> = ({ blok }) => {
   );
 };
 
-// TODO: Don't need accessToken. So it doesn't get leaked on the front-end
 storyblokInit({
-  // accessToken: process.env.STORYBLOK_TOKEN,
-  // accessToken: "undefined",
-  // accessToken: "ckbY4lg0OtsQ9U6PCjI7rgtt",
-  // process.env.NODE_ENV === "production"
-  //   ? "drAirIDWhhTMK3FWUQYMrAtt"
-  //   : "ckbY4lg0OtsQ9U6PCjI7rgtt",
-  // use: [apiPlugin],
   components: {
     page: Page,
     grid: Grid,
@@ -41,9 +33,6 @@ storyblokInit({
     tour: Tour,
     tour_list: TourList,
   },
-  // apiOptions: {
-  //   fetch: fetch,
-  // },
   enableFallbackComponent: true,
   customFallbackComponent: CustomFallbackComponent,
 });
