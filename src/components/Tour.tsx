@@ -3,6 +3,7 @@ import {
   storyblokEditable,
   renderRichText,
   RichTextSchema,
+  ISbNode,
 } from "@storyblok/react/rsc";
 import Image from "next/image";
 import ReactDOMServer from "react-dom/server";
@@ -37,7 +38,6 @@ export const Tour: FC<{ blok: any }> = ({ blok }) => {
                     switch (component) {
                       case "call_to_action":
                         return ReactDOMServer.renderToStaticMarkup(
-                          // <pre>{JSON.stringify(data)}</pre>
                           <div className="not-prose">
                             <CallToAction blok={data} />
                           </div>
@@ -47,7 +47,7 @@ export const Tour: FC<{ blok: any }> = ({ blok }) => {
                   schema: Object.assign({}, RichTextSchema, {
                     nodes: {
                       ...RichTextSchema.nodes,
-                      image: (node: any) => ({
+                      image: (node: ISbNode) => ({
                         singleTag: [
                           {
                             tag: `img`,

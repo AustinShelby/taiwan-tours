@@ -4,11 +4,6 @@ import StoryblokStory from "@storyblok/react/story";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
-// localhost:3000/api/draft?secret=MY_SECRET_TOKEN&slug=/tours/kaohsiung-culture-tour
-
-// TODO: What happens when someone builds the website, runs it, and creates a new tour in Storyblok?
-// TODO: Will this show it. Yes. which is weird.
-// TODO: Make dynamic on staging, PREVIEW on production
 export const generateStaticParams = async () => {
   setEnableCaching(false);
   const client = getStoryblokApi();
@@ -43,7 +38,6 @@ const TourPage = async ({ params: { slug } }: { params: { slug: string } }) => {
   const story = await fetchTour(slug);
 
   if (!story) {
-    console.log(`Not found: ${slug}`);
     notFound();
   }
 

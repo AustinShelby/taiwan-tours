@@ -3,7 +3,6 @@ import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import { draftMode } from "next/headers";
 
-// TODO: Use draftMode instead of env.
 const fetchToursPage = async () => {
   const { isEnabled } = draftMode();
   const client = getStoryblokApi();
@@ -14,11 +13,9 @@ const fetchToursPage = async () => {
 };
 
 const fetchAllTours = async () => {
-  console.log(`Fetching all tours`);
-  const isEnabled = process.env.PREVIEW !== "true";
   const client = getStoryblokApi();
   const response = await client.getStories({
-    version: isEnabled ? "draft" : "published",
+    version: "draft",
     starts_with: "tours/",
     is_startpage: false,
   });
