@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
-    "@storyblok/react": "^2.4.0",
+    "@storyblok/react": "^2.4.7",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",

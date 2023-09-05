@@ -5,6 +5,8 @@ import {
   RichTextSchema,
 } from "@storyblok/react/rsc";
 import Image from "next/image";
+import ReactDOMServer from "react-dom/server";
+import { CallToAction } from "./CallToAction";
 
 export const Tour: FC<{ blok: any }> = ({ blok }) => {
   return (
@@ -34,26 +36,33 @@ export const Tour: FC<{ blok: any }> = ({ blok }) => {
                   resolver: (component, data) => {
                     switch (component) {
                       case "call_to_action":
-                        return `<div>hey world</div>`;
+                        return ReactDOMServer.renderToStaticMarkup(
+                          // <pre>{JSON.stringify(data)}</pre>
+                          <div className="not-prose">
+                            <CallToAction blok={data} />
+                          </div>
+                        );
                     }
                   },
                   schema: Object.assign({}, RichTextSchema, {
                     nodes: {
                       ...RichTextSchema.nodes,
-                      // image: (node: any) => ({
-                      //   singleTag: [
-                      //     {
-                      //       tag: `img`,
-                      //       attrs: {
-                      //         src: node.attrs.src,
-                      //         alt: node.attrs.alt,
-                      //         title: node.attrs.title,
-                      //         class:
-                      //           "text-5xl md:text-7xl font-extrabold font-jakarta text-center text-black",
-                      //       },
-                      //     },
-                      //   ],
-                      // }),
+                      image: (node: any) => ({
+                        singleTag: [
+                          {
+                            tag: `img`,
+                            attrs: {
+                              src: `${node.attrs.src}/m/672x0`,
+                              alt: node.attrs.alt,
+                              loading: "lazy",
+                              width: node.attrs.src.split("/")[5].split("x")[0],
+                              height: node.attrs.src
+                                .split("/")[5]
+                                .split("x")[1],
+                            },
+                          },
+                        ],
+                      }),
                     },
                   }),
                 }),
