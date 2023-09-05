@@ -8,6 +8,7 @@ import {
 import { StoryblokProvider } from "@/components/StoryblokProvider";
 import Link from "next/link";
 import { curryFetch } from "@/utils/curryFetch";
+import { draftMode } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -31,10 +32,10 @@ storyblokInit({
 });
 
 const fetchSiteData = async () => {
+  const { isEnabled } = draftMode();
   const client = getStoryblokApi();
   const response = await client.getStory("site-data", {
-    version: "draft",
-    resolve_relations: "tour_list.tours",
+    version: isEnabled ? "draft" : "published",
   });
   return response.data.story;
 };

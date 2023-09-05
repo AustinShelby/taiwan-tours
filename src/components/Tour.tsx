@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { storyblokEditable, renderRichText } from "@storyblok/react/rsc";
+import {
+  storyblokEditable,
+  renderRichText,
+  RichTextSchema,
+} from "@storyblok/react/rsc";
 import Image from "next/image";
 
 export const Tour: FC<{ blok: any }> = ({ blok }) => {
@@ -10,12 +14,13 @@ export const Tour: FC<{ blok: any }> = ({ blok }) => {
           {blok.name}
         </h1>
         <Image
-          className="object-cover w-full h-96 pt-12 object-center"
+          className="object-cover w-full pt-12 object-center"
           src={blok.main_image.filename}
           width={blok.main_image.filename.split("/")[5].split("x")[0]}
           height={blok.main_image.filename.split("/")[5].split("x")[1]}
           alt={blok.main_image.alt}
           sizes="992px"
+          priority={true}
         />
         <p className="pt-12 text-lg md:text-2xl leading-relaxed">
           {blok.description}
@@ -32,6 +37,25 @@ export const Tour: FC<{ blok: any }> = ({ blok }) => {
                         return `<div>hey world</div>`;
                     }
                   },
+                  schema: Object.assign({}, RichTextSchema, {
+                    nodes: {
+                      ...RichTextSchema.nodes,
+                      // image: (node: any) => ({
+                      //   singleTag: [
+                      //     {
+                      //       tag: `img`,
+                      //       attrs: {
+                      //         src: node.attrs.src,
+                      //         alt: node.attrs.alt,
+                      //         title: node.attrs.title,
+                      //         class:
+                      //           "text-5xl md:text-7xl font-extrabold font-jakarta text-center text-black",
+                      //       },
+                      //     },
+                      //   ],
+                      // }),
+                    },
+                  }),
                 }),
               }}
             ></div>

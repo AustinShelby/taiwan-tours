@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { storyblokEditable } from "@storyblok/react/rsc";
+import Image from "next/image";
 
 export const Testimonial: FC<{ blok: any }> = ({ blok }) => {
   return (
@@ -31,10 +32,13 @@ export const Testimonial: FC<{ blok: any }> = ({ blok }) => {
       </div>
       <p className="text-lg mt-4">{blok.testimonial}</p>
       <div className="flex items-center space-x-4 mt-4">
-        <img
+        <Image
           className="w-8 h-8 rounded-full object-cover"
           src={blok.picture.filename}
-          alt=""
+          width={blok.picture.filename.split("/")[5].split("x")[0]}
+          height={blok.picture.filename.split("/")[5].split("x")[1]}
+          alt={blok.picture.alt}
+          sizes="32px"
         />
         <p className="text-xl font-bold">{blok.name}</p>
       </div>

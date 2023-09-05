@@ -11,11 +11,9 @@ import { notFound } from "next/navigation";
 // TODO: Make dynamic on staging, PREVIEW on production
 export const generateStaticParams = async () => {
   setEnableCaching(false);
-  // const { isEnabled } = draftMode();
-  const isEnabled = process.env.PREVIEW !== "true";
   const client = getStoryblokApi();
   const response = await client.getStories({
-    version: true ? "draft" : "published",
+    version: "draft",
     starts_with: "tours/",
     is_startpage: false,
   });
@@ -24,18 +22,12 @@ export const generateStaticParams = async () => {
     slug: story.slug,
   }));
 
-  console.log(slugs);
-  setEnableCaching(true);
-
   return slugs;
 };
 
-export const dynamicParams = process.env.PREVIEW === "true" ? false : true;
-
 const fetchTour = async (slug: string) => {
-  console.log(`Fetching tour: ${slug}`);
   try {
-    const isEnabled = process.env.PREVIEW !== "true";
+    const { isEnabled } = draftMode();
     const client = getStoryblokApi();
     const response = await client.getStory(`tours/${slug}`, {
       version: isEnabled ? "draft" : "published",

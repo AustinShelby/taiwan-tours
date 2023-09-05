@@ -13,10 +13,10 @@ const fetchHomePage = async () => {
   return response.data.story;
 };
 
+// TODO: Live Edit mode works on this page. Not on other pages
+
 const HomePage = async () => {
   const story = await fetchHomePage();
-
-  console.log(story);
 
   return (
     <div {...storyblokEditable(story.content)}>

@@ -3,8 +3,9 @@ import { getStoryblokApi, storyblokEditable } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import { draftMode } from "next/headers";
 
+// TODO: Use draftMode instead of env.
 const fetchToursPage = async () => {
-  const isEnabled = process.env.PREVIEW !== "true";
+  const { isEnabled } = draftMode();
   const client = getStoryblokApi();
   const response = await client.getStory(`tours`, {
     version: isEnabled ? "draft" : "published",
