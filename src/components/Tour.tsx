@@ -13,7 +13,7 @@ export const Tour: FC<{ blok: any }> = ({ blok }) => {
   return (
     <section {...storyblokEditable(blok)} className="pt-32 pb-16 bg-main">
       <div className="component">
-        <h1 className="text-2xl md:text-5xl font-extrabold font-jakarta text-black">
+        <h1 className="text-3xl md:text-5xl font-bold font-jakarta text-black">
           {blok.name}
         </h1>
         <Image
@@ -22,7 +22,7 @@ export const Tour: FC<{ blok: any }> = ({ blok }) => {
           width={blok.main_image.filename.split("/")[5].split("x")[0]}
           height={blok.main_image.filename.split("/")[5].split("x")[1]}
           alt={blok.main_image.alt}
-          sizes="992px"
+          sizes="(max-width: 992px) calc(100vw - 32px), 992px"
           priority={true}
         />
         <p className="pt-12 text-lg md:text-2xl leading-relaxed">

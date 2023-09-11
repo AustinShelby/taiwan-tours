@@ -8,7 +8,9 @@ export const Grid: FC<{ blok: any }> = ({ blok }) => {
         className="py-16 w-full max-w-xl mx-auto px-4 md:max-w-5xl"
         {...storyblokEditable(blok)}
       >
-        <h2 className="text-5xl font-bold">{blok.heading}</h2>
+        <h2 className="text-3xl md:text-4xl font-jakarta font-bold">
+          {blok.heading}
+        </h2>
         <div
           className={`grid mt-12 ${
             blok.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"

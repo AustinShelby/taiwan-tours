@@ -9,7 +9,7 @@ export const TourList: FC<{ blok: any }> = ({ blok }) => {
         className="max-w-xl mx-auto px-4 md:max-w-5xl w-full"
         {...storyblokEditable(blok)}
       >
-        <h2 className="text-3xl md:text-4xl font-medium font-jakarta">
+        <h2 className="text-3xl md:text-4xl font-jakarta font-bold">
           {blok.heading}
         </h2>
         <div className={`grid mt-12 md:grid-cols-2 gap-8`}>

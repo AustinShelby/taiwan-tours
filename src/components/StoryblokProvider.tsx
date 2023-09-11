@@ -10,6 +10,7 @@ import { Tour } from "./Tour";
 import { TourList } from "./TourList";
 import { Testimonial } from "./Testimonial";
 import { CallToAction } from "./CallToAction";
+import { SiteData } from "./SiteData";
 
 const CustomFallbackComponent: FC<{ blok: SbBlokData }> = ({ blok }) => {
   return (
@@ -32,6 +33,7 @@ storyblokInit({
     call_to_action: CallToAction,
     tour: Tour,
     tour_list: TourList,
+    site_data: SiteData,
   },
   enableFallbackComponent: true,
   customFallbackComponent: CustomFallbackComponent,

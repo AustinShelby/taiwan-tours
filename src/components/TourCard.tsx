@@ -39,7 +39,7 @@ export const TourCard: FC<{ tour: any }> = ({ tour }) => {
       </div>
       <div className="p-4 lg:p-8 flex flex-col flex-1 justify-between">
         <div>
-          <div className="flex flex-row justify-between items-baseline">
+          <div className="flex gap-4 flex-row justify-between items-baseline">
             <h3 className="text-lg lg:text-2xl font-jakarta font-bold">
               {tour.content?.name}
             </h3>

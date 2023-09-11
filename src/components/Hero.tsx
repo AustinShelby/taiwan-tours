@@ -20,7 +20,7 @@ export const Hero: FC<{ blok: any }> = ({ blok }) => {
                         tag: `h${node.attrs.level}`,
                         attrs: {
                           class:
-                            "text-5xl md:text-7xl font-extrabold font-jakarta text-center text-black",
+                            "text-5xl md:text-7xl font-bold font-jakarta text-center text-black",
                         },
                       },
                     ],

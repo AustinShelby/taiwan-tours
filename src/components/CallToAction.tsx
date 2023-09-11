@@ -6,7 +6,7 @@ export const CallToAction: FC<{ blok: any }> = ({ blok }) => {
   return (
     <div {...storyblokEditable(blok)} className="bg-secondary">
       <div className="component py-16">
-        <h2 className="text-4xl font-jakarta font-semibold text-center">
+        <h2 className="text-3xl text-black md:text-4xl font-jakarta font-bold text-center">
           {blok.title}
         </h2>
         <div className="flex justify-center mt-8">

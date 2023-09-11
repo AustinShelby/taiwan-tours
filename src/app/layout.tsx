@@ -4,7 +4,9 @@ import {
   storyblokInit,
   apiPlugin,
   getStoryblokApi,
+  storyblokEditable,
 } from "@storyblok/react/rsc";
+import StoryblokStory from "@storyblok/react/story";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
 import Link from "next/link";
 import { curryFetch } from "@/utils/curryFetch";
@@ -14,7 +16,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const plus_jakarta_sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["500", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-jakarta",
 });
 
@@ -57,10 +59,11 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
               </nav>
             </header>
             {children}
-            <footer className="bg-secondary">
-              <div className="component py-4">
-                <p className="opacity-80">{story.content.footer}</p>
-              </div>
+            <footer
+              {...storyblokEditable(story.content)}
+              className="bg-secondary"
+            >
+              <StoryblokStory story={story} />
             </footer>
           </body>
         </html>
